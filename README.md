@@ -11,7 +11,7 @@ cd dockerlabs-gui
 ```
 pip3 install -r requirements.txt 
 ```
-#### IMPORTANTE !!
+### IMPORTANTE !!
 
 La función de **download** es la librería mega.py pero con algunas modificaciones que me ayudaron a hacer el progreso de descarga.
 
@@ -31,4 +31,4 @@ sudo python3 main.py
 ```
 **IMPORTANTE EJECUTARLO COMO SUDO YA QUE SI NO NO FUNCIONARÁ**
 
-# Imágenes
+### Imágenes
