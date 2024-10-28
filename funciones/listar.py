@@ -158,7 +158,7 @@ def list_web_machines(treeview, downloaded_machines):
                 fecha_creacion, 
                 creador_text.title(), 
                 difficulty_text.title(), 
-                "No"  # Las máquinas web aún no están descargadas
+                "❌"  # Las máquinas web aún no están descargadas
             ))
 
         machines.append({
