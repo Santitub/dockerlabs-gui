@@ -2,8 +2,7 @@
 
 *SE RECOMIENDA USAR **KALI LINUX** PARA USAR ESTE PROGRAMA*
 
-```
-bash
+```bash
 https://github.com/Santitub/dockerlabs-gui.git
 
 
