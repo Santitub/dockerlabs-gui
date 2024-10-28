@@ -3,17 +3,17 @@
 *SE RECOMIENDA USAR **KALI LINUX** PARA USAR ESTE PROGRAMA*
 
 ```
-```bash
+bash
 https://github.com/Santitub/dockerlabs-gui.git
 ```
 
 ```
-```bash
+bash
 cd dockerlabs-gui
 ```
 
 ```
-```bash
+bash
 pip3 install -r requirements.txt 
 ```
 ### IMPORTANTE !!!
