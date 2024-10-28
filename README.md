@@ -27,7 +27,7 @@ Este programa puede:
 ## Uso
 
 ```
-sudo python3 main.py (**IMPORTANTE EJECUTARLO COMO SUDO YA QUE SI NO NO FUNCIONARÁ**)
+sudo python3 main.py **IMPORTANTE EJECUTARLO COMO SUDO YA QUE SI NO NO FUNCIONARÁ**
 ```
 
 # Ejemplos
