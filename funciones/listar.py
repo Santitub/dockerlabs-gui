@@ -3,6 +3,8 @@ import unidecode
 import requests
 from bs4 import BeautifulSoup
 import tkinter as tk
+import subprocess
+import getpass  # Para obtener el nombre del usuario actual
 
 # URL de la página web de DockerLabs
 URL = 'https://dockerlabs.es'
@@ -17,6 +19,14 @@ def crear_archivo_maquinas():
     if not os.path.exists(ARCHIVO_MAQUINAS):
         with open(ARCHIVO_MAQUINAS, "w") as file:
             file.write("")  # Crear un archivo vacío
+        
+    os.chmod(ARCHIVO_MAQUINAS, 0o777)  # Permisos: lectura y escritura para usuario y grupo
+
+def crear_carpeta_si_no_existe(carpeta):
+    """Crear una carpeta con permisos adecuados si no existe."""
+    if not os.path.exists(carpeta):
+        os.makedirs(carpeta, exist_ok=True)
+    os.chmod(carpeta, 0o777)  # Permisos de lectura, escritura y ejecución para usuario y grupo
 
 def guardar_maquinas_archivo(machines):
     """Guardar la información de las máquinas en el archivo 'maquinas.txt'."""
@@ -31,10 +41,11 @@ def list_local_machines(treeview):
 
     for folder in folders:
         folder_path = os.path.join(CARPETA_MAQUINAS, folder)
-        os.makedirs(folder_path, exist_ok=True)  # Crear la carpeta si no existe
+        crear_carpeta_si_no_existe(folder_path)
+
         for dificultad in DIFICULTAD:
             dificultad_path = os.path.join(folder_path, dificultad)
-            os.makedirs(dificultad_path, exist_ok=True)  # Crear carpeta de dificultad
+            crear_carpeta_si_no_existe(dificultad_path)
             
             for filename in os.listdir(dificultad_path):
                 if filename.endswith(".zip"):
@@ -130,15 +141,15 @@ def list_web_machines(treeview, downloaded_machines):
         name = row.find("span").find("strong")
         difficulty = row.find("span", class_="badge")
         onclick_text = row.attrs.get('onclick')
-        creador_text = 'N/A'
-        fecha_creacion = 'N/A'
+        creador_text = 'n/a'
+        fecha_creacion = 'n/a'
 
         if onclick_text:
-            creador_text = obtener_elemento_onclick(onclick_text, 3)
-            fecha_creacion = obtener_elemento_onclick(onclick_text, 5)
+            creador_text = obtener_elemento_onclick(onclick_text, 3).lower()
+            fecha_creacion = obtener_elemento_onclick(onclick_text, 5).lower()
 
-        name_text = name.get_text(strip=True).lower() if name else 'N/A'
-        difficulty_text = unidecode.unidecode(difficulty.get_text(strip=True)).lower() if difficulty else 'N/A'
+        name_text = name.get_text(strip=True).lower() if name else 'n/a'
+        difficulty_text = unidecode.unidecode(difficulty.get_text(strip=True)).lower() if difficulty else 'n/a'
 
         # Solo agregar máquinas que no estén en la lista de descargadas
         if (name_text, difficulty_text) not in downloaded_machines_set:
@@ -164,9 +175,9 @@ def obtener_elemento_onclick(text, index):
     """Función para extraer el elemento correcto del atributo onclick."""
     try:
         elementos = text.split('(')[1].split(')')[0].split(',')
-        return elementos[index].strip().strip("'").strip('"')
+        return elementos[index].strip().strip("'").strip('"').lower()
     except (IndexError, AttributeError):
-        return 'N/A'
+        return 'n/a'
 
 def obtener_datos_web():
     """Obtener datos de las máquinas desde la web usando scraping."""

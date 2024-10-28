@@ -14,7 +14,7 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("Gestor de Máquinas")
+        self.title("DockerLabs GUI")
         self.geometry("800x600")
 
         # Barra lateral
@@ -184,7 +184,9 @@ class App(ctk.CTk):
                     if not os.path.exists(deploy_folder):
                         # Crear la carpeta de despliegue
                         os.makedirs(deploy_folder, exist_ok=True)
-                        
+                        print(deploy_folder)
+                        os.chmod(deploy_folder, 0o777)
+
                         # Copiar el archivo .zip a la carpeta de despliegue
                         destination_zip = os.path.join(deploy_folder, os.path.basename(zip_path))
                         shutil.copy2(zip_path, destination_zip)
