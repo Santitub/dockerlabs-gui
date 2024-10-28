@@ -17,7 +17,7 @@ La función de **download** es la librería mega.py pero con algunas modificacio
 
 ---
 
-**HECHO EN **![python](https://img.shields.io/badge/python-3.12.9-3670A0?logo=python&logoColor=ffdd54)
+**HECHO EN** ![python](https://img.shields.io/badge/python-3.12.9-3670A0?logo=python&logoColor=ffdd54)
 
 Este programa puede:
 - Listar todas las máquinas, tanto descargadas como no descargadas.
