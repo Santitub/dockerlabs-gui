@@ -37,3 +37,7 @@ sudo python3 main.py
 ## Imágenes
 
 ![listar](https://github.com/user-attachments/assets/46dd4bd1-9f88-4190-a1e0-53b94363469a)
+
+![desplegar](https://github.com/user-attachments/assets/bb591d8d-7117-43dd-9316-be469b134d7c)
+
+![descargar](https://github.com/user-attachments/assets/228b4b3d-1379-4f3b-9f73-dae137d757e7)
