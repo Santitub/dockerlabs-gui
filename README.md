@@ -40,4 +40,4 @@ sudo python3 main.py
 
 ![desplegar](https://github.com/user-attachments/assets/bb591d8d-7117-43dd-9316-be469b134d7c)
 
-![descargar](https://github.com/user-attachments/assets/228b4b3d-1379-4f3b-9f73-dae137d757e7)
+![descargar](https://github.com/user-attachments/assets/f07e1a7f-8b09-4adf-9525-47dd3cdcbe5c)
