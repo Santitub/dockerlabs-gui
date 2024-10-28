@@ -31,15 +31,4 @@ sudo python3 main.py
 ```
 **IMPORTANTE EJECUTARLO COMO SUDO YA QUE SI NO NO FUNCIONARÁ**
 
-# Ejemplos
-
----
-- Descarga de máquina.
-
-[Video de ejemplo de Descarga.](ejemplos/Descarga.mp4)
-
-```
-geTarget.py -d facil -r -w
-```
-
-![descarga](ejemplos/descarga.png)
+##Imágenes
