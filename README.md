@@ -20,7 +20,7 @@ La función de **download** es la librería mega.py pero con algunas modificacio
 **HECHO EN** ![python](https://img.shields.io/badge/python-3.12.9-3670A0?logo=python&logoColor=ffdd54)
 
 Este programa puede:
-- Listar todas las máquinas disponibles en (https://dockerlabs.es/"DockerLabs") , tanto descargadas como no descargadas.
+- Listar todas las máquinas disponibles en [(https://dockerlabs.es/"DockerLabs")] , tanto descargadas como no descargadas.
 - Desplegar una máquina desde la interfaz (por ahora no está soportado para desplegar varias a la vez)
 - Descargar una máquina pasándole el enlace de mega.
 
