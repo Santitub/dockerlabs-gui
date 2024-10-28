@@ -31,4 +31,4 @@ sudo python3 main.py
 ```
 **IMPORTANTE EJECUTARLO COMO SUDO YA QUE SI NO NO FUNCIONARÁ**
 
-##Imágenes
+#Imágenes
