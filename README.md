@@ -35,3 +35,5 @@ sudo python3 main.py
 **Es importante ejecutar el programa con** **```sudo```** **ya que de lo contrario no funcionará correctamente**
 
 ## Imágenes
+
+![listar](https://github.com/user-attachments/assets/46dd4bd1-9f88-4190-a1e0-53b94363469a)
