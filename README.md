@@ -29,6 +29,6 @@ Este programa puede:
 ```
 sudo python3 main.py
 ```
-**IMPORTANTE EJECUTARLO COMO SUDO YA QUE SI NO NO FUNCIONARÁ**
+**Es importante ejecutar el programa con** **```sudo´´´** **ya que de lo contrario no funcionará correctamente**
 
 ## Imágenes
