@@ -11,7 +11,7 @@ pip3 install -r requirements.txt
 ```
 ### IMPORTANTE !!!
 
-La función de **download** es la librería mega.py pero con algunas modificaciones que me ayudaron a hacer el progreso de descarga.
+La función de **download** es la librería [mega.py](https://github.com/odwyersoftware/mega.py) pero con algunas modificaciones que me ayudaron a hacer el progreso de descarga (modifiqué los parámetros de la descarga para que se descargaran por chunks).
 
 ---
 
