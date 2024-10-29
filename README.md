@@ -3,7 +3,7 @@
 *SE RECOMIENDA USAR **KALI LINUX** PARA USAR ESTE PROGRAMA*
 
 ```bash
-https://github.com/Santitub/dockerlabs-gui.git
+git clone https://github.com/Santitub/dockerlabs-gui.git
 
 cd dockerlabs-gui
 
