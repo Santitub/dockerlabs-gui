@@ -2,9 +2,6 @@ import os
 import unidecode
 import requests
 from bs4 import BeautifulSoup
-import tkinter as tk
-import subprocess
-import getpass  # Para obtener el nombre del usuario actual
 
 # URL de la página web de DockerLabs
 URL = 'https://dockerlabs.es'
@@ -32,7 +29,7 @@ def guardar_maquinas_archivo(machines):
     """Guardar la información de las máquinas en el archivo 'maquinas.txt'."""
     with open(ARCHIVO_MAQUINAS, "w") as file:
         for machine in machines:
-            file.write(f"{machine['nombre']} | {machine['fecha']} | {machine['creador']} | {machine['dificultad']}\n")
+            file.write(f"{machine['nombre']} | {machine['fecha']} | {machine['creador']} | {machine['dificultad']} | {machine['enlace']}\n")
 
 def list_local_machines(treeview):
     """Listar máquinas locales almacenadas en el sistema y completar su información desde el archivo."""
@@ -117,12 +114,13 @@ def leer_maquinas_archivo():
     if os.path.exists(ARCHIVO_MAQUINAS):
         with open(ARCHIVO_MAQUINAS, "r") as file:
             for line in file:
-                nombre, fecha, creador, dificultad = line.strip().split(" | ")
+                nombre, fecha, creador, dificultad, enlace = line.strip().split(" | ")
                 machines_info.append({
                     'nombre': nombre.lower(),
                     'fecha': fecha,
                     'creador': creador.lower(),
-                    'dificultad': dificultad.lower()
+                    'dificultad': dificultad.lower(),
+                    'enlace': enlace
                 })
     return machines_info
 
@@ -140,6 +138,7 @@ def list_web_machines(treeview, downloaded_machines):
     for row in docker_rows:
         name = row.find("span").find("strong")
         difficulty = row.find("span", class_="badge")
+        enlace_descarga = obtener_enlace_descarga(row)  # Obtenemos el enlace de descarga
         onclick_text = row.attrs.get('onclick')
         creador_text = 'n/a'
         fecha_creacion = 'n/a'
@@ -158,14 +157,16 @@ def list_web_machines(treeview, downloaded_machines):
                 fecha_creacion, 
                 creador_text.title(), 
                 difficulty_text.title(), 
-                "❌"  # Las máquinas web aún no están descargadas
+                "❌",  # Las máquinas web aún no están descargadas
+                enlace_descarga if enlace_descarga else "n/a"  # Agregamos el enlace al Treeview
             ))
 
         machines.append({
             'nombre': name_text,
             'fecha': fecha_creacion,
             'creador': creador_text,
-            'dificultad': difficulty_text
+            'dificultad': difficulty_text,
+            'enlace': enlace_descarga if enlace_descarga else "n/a"  # Guardamos el enlace en el archivo
         })
 
     # Guardar todas las máquinas en el archivo
@@ -188,3 +189,15 @@ def obtener_datos_web():
 
     soup = BeautifulSoup(response.content, 'html.parser')
     return soup.find_all("div", class_=lambda x: x and "item" in x.split())
+
+def obtener_enlace_descarga(row):
+    """Obtener el enlace de descarga de la máquina desde el botón correspondiente."""
+    download_button = row.find("button", class_="download")
+    if download_button:
+        onclick_text = download_button.attrs.get("onclick")
+        if onclick_text:
+            # Extraer la URL de Mega de la función `window.open` dentro del onclick
+            start = onclick_text.find("('") + 2
+            end = onclick_text.find("'", start)
+            return onclick_text[start:end]
+    return None

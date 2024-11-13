@@ -142,10 +142,6 @@ class App(ctk.CTk):
         stop_button = ctk.CTkButton(frame, text="Detener y Eliminar Máquina", command=self.stop_selected_machine)
         stop_button.pack(pady=10)
 
-        # Caja de texto para mostrar la salida
-        self.console_output = ctk.CTkTextbox(frame, height=200, width=400, wrap="word")
-        self.console_output.pack(side=tk.LEFT, fill=tk.X, expand=False)
-
         return frame
 
     def deploy_selected_machine(self):
@@ -223,27 +219,66 @@ class App(ctk.CTk):
     def create_download_frame(self):
         frame = ctk.CTkFrame(self.main_content)
 
-        # Etiqueta y campo de entrada para el enlace de Mega
-        self.label_link = ctk.CTkLabel(frame, text="Introduce el link de Mega:")
-        self.label_link.pack(pady=10)
-
-        self.entry_link = ctk.CTkEntry(frame, width=300)
-        self.entry_link.pack(pady=10)
-
-        # Botón de descarga, que inicia el proceso llamando a `iniciar_descarga`
-        self.download_button = ctk.CTkButton(
-            frame, 
-            text="Descargar", 
-            command=lambda: iniciar_descarga(self.entry_link.get(), self)
+            # Crear y configurar el Treeview para mostrar las máquinas descargables de la web
+        self.list_web_machines_tree = ttk.Treeview(
+            frame, columns=("Nombre", "Fecha", "Creador", "Dificultad", "Descargada", "Enlace"), show="headings", height=10
         )
-        self.download_button.pack(pady=10)
 
-        # Etiqueta de progreso
+        # Configuración de las columnas con stretch para adaptarse al tamaño
+        self.list_web_machines_tree.heading("Nombre", text="Nombre", anchor="center")
+        self.list_web_machines_tree.column("Nombre", anchor="center", stretch=True, width=150)
+
+        self.list_web_machines_tree.heading("Fecha", text="Fecha de creación", anchor="center")
+        self.list_web_machines_tree.column("Fecha", anchor="center", stretch=True, width=100)
+
+        self.list_web_machines_tree.heading("Creador", text="Creador", anchor="center")
+        self.list_web_machines_tree.column("Creador", anchor="center", stretch=True, width=150)
+
+        self.list_web_machines_tree.heading("Dificultad", text="Dificultad", anchor="center")
+        self.list_web_machines_tree.column("Dificultad", anchor="center", stretch=True, width=100)
+
+        self.list_web_machines_tree.heading("Descargada", text="Descargada", anchor="center")
+        self.list_web_machines_tree.column("Descargada", anchor="center", stretch=True, width=100)
+
+        self.list_web_machines_tree.heading("Enlace", text="Enlace", anchor="center")
+        self.list_web_machines_tree.column("Enlace", width=0, stretch=False)  # Ocultamos esta columna
+
+        self.list_web_machines_tree.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+
+        # Llamar a la función que lista máquinas de la web no descargadas
+        downloaded_machines = list_local_machines(self.list_web_machines_tree)  # Lista de máquinas locales
+        list_web_machines(self.list_web_machines_tree, downloaded_machines)  # Solo lista las no descargadas
+
+        # Botón para descargar la máquina seleccionada
+        self.download_selected_button = ctk.CTkButton(frame, text="Descargar Seleccionada", command=self.download_selected_machine)
+        self.download_selected_button.pack(pady=10)
+
+        # Campo de progreso
         self.progress_label = ctk.CTkLabel(frame, text="Progreso: 0 MB / 0 MB")
         self.progress_label.pack(pady=10)
 
         return frame
 
+    def download_selected_machine(self):
+        selected_item = self.list_web_machines_tree.selection()
+        if selected_item:
+            machine_data = self.list_web_machines_tree.item(selected_item[0], 'values')
+
+            # Verificamos si hay suficientes elementos en machine_data
+            if len(machine_data) > 5:
+                download_link = machine_data[5]  # Enlace de descarga
+
+                if download_link:
+                    print("Enlace de descarga:", download_link)  # Para depuración
+                    iniciar_descarga(download_link, self)  # Usa el enlace de la máquina seleccionada
+                else:
+                    print("No se encontró el enlace de descarga para la máquina seleccionada.")
+            else:
+                print("Datos incompletos para la máquina seleccionada.")
+        else:
+            print("Seleccione una máquina para descargar.")
+
 if __name__ == "__main__":
     app = App()
     app.mainloop()
+
