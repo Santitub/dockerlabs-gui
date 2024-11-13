@@ -33,6 +33,6 @@ sudo python3 main.py
 
 ![listar](https://github.com/user-attachments/assets/46dd4bd1-9f88-4190-a1e0-53b94363469a)
 
-![desplegar](https://github.com/user-attachments/assets/bb591d8d-7117-43dd-9316-be469b134d7c)
+![desplegar](https://github.com/user-attachments/assets/36d40437-b45c-4f9d-a0d5-5dcbbbe37f10)
 
-![descargar](https://github.com/user-attachments/assets/f07e1a7f-8b09-4adf-9525-47dd3cdcbe5c)
+![descargar](https://github.com/user-attachments/assets/4f1406ec-567b-4241-a1eb-9d525d9e24d4)
