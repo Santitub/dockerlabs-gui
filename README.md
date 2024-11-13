@@ -27,7 +27,7 @@ Este programa puede:
 ```
 sudo python3 main.py
 ```
-**Es importante ejecutar el programa con** **```sudo```** **ya que de lo contrario no funcionará correctamente**
+**Es importante ejecutar el programa con** **```sudo```** **ya que de lo contrario no funcionará correctamente. Tanto si descargas el código fuente como el ejecutable**
 
 ## Imágenes
 
