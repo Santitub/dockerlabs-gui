@@ -13,6 +13,8 @@ pip3 install -r requirements.txt
 
 La función de **download** es la librería [mega.py](https://github.com/odwyersoftware/mega.py) pero con algunas modificaciones que me ayudaron a hacer el progreso de descarga (modifiqué los parámetros de la descarga para que se descargaran por chunks).
 
+# No desplieguen máquinas mientras tengan un contenedor suspendido ya que este se borrará
+
 ---
 
 **Creado en** ![python](https://img.shields.io/badge/python-3.12.9-3670A0?logo=python&logoColor=ffdd54)
